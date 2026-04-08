@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ARCHI-MIND AI | Building Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "tertiary-container": "#50ffb0",
+            "outline": "#737580",
+            "on-secondary-fixed-variant": "#006266",
+            "inverse-primary": "#bb005e",
+            "secondary": "#00f4fe",
+            "on-tertiary-container": "#005e3b",
+            "tertiary-fixed-dim": "#3bf0a3",
+            "secondary-fixed-dim": "#00e5ee",
+            "primary-fixed": "#ff70a0",
+            "surface": "#0c0e17",
+            "on-error-container": "#ffb2b9",
+            "on-surface-variant": "#aaaab7",
+            "on-primary-container": "#4c0022",
+            "on-tertiary-fixed": "#00492d",
+            "error": "#ff6e84",
+            "surface-bright": "#282b3a",
+            "inverse-on-surface": "#53545f",
+            "on-tertiary-fixed-variant": "#006943",
+            "inverse-surface": "#faf8ff",
+            "primary-dim": "#ff6a9d",
+            "on-secondary-container": "#dffdff",
+            "primary-fixed-dim": "#ff5192",
+            "primary": "#ff89ad",
+            "on-primary-fixed": "#000000",
+            "on-secondary": "#00575b",
+            "surface-dim": "#0c0e17",
+            "secondary-container": "#00696e",
+            "tertiary": "#c0ffd8",
+            "on-error": "#490013",
+            "on-tertiary": "#006841",
+            "surface-container-high": "#1c1f2b",
+            "surface-container": "#171924",
+            "tertiary-fixed": "#50ffb0",
+            "on-primary-fixed-variant": "#5d002c",
+            "on-secondary-fixed": "#004346",
+            "secondary-fixed": "#00f4fe",
+            "error-dim": "#d73357",
+            "surface-tint": "#ff89ad",
+            "primary-container": "#ff70a0",
+            "outline-variant": "#464752",
+            "surface-container-low": "#11131d",
+            "surface-container-lowest": "#000000",
+            "on-surface": "#f0f0fd",
+            "surface-variant": "#222532",
+            "secondary-dim": "#00e5ee",
+            "on-background": "#f0f0fd",
+            "tertiary-dim": "#3bf0a3",
+            "error-container": "#a70138",
+            "on-primary": "#62002e",
+            "background": "#0c0e17"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.125rem",
+            "lg": "0.25rem",
+            "xl": "0.5rem",
+            "full": "0.75rem"
+          },
+          "fontFamily": {
+            "headline": ["Inter"],
+            "body": ["Inter"],
+            "label": ["Space Grotesk"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #0c0e17;
+      color: #f0f0fd;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .glass-panel {
+      background: rgba(12, 14, 23, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .neon-glow-primary {
+      box-shadow: 0 0 40px rgba(255, 137, 173, 0.06);
+    }
+    .blueprint-grid {
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    /* Hide scrollbar */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="h-screen w-screen flex flex-col">
+<!-- TopNavBar Implementation -->
+<header class="fixed top-0 w-full z-50 bg-[#0c0e17]/80 backdrop-blur-xl border-b border-white/10 shadow-[0_0_40px_rgba(255,137,173,0.06)] flex justify-between items-center px-6 h-16 w-full">
+<div class="flex items-center gap-8">
+<h1 class="text-xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-pink-700 font-['Inter']">ARCHI-MIND AI</h1>
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-400 font-medium hover:text-white transition-colors font-['Inter'] tracking-tight" href="#">Models</a>
+<a class="text-slate-400 font-medium hover:text-white transition-colors font-['Inter'] tracking-tight" href="#">Datasets</a>
+<a class="text-slate-400 font-medium hover:text-white transition-colors font-['Inter'] tracking-tight" href="#">Simulations</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<input class="bg-surface-container-lowest border border-white/5 rounded-full px-4 py-1.5 text-sm w-64 focus:outline-none focus:border-secondary transition-all" placeholder="Search architecture library..." type="text"/>
+</div>
+<button class="p-2 hover:bg-white/5 transition-all duration-300 rounded-full active:scale-95">
+<span class="material-symbols-outlined text-slate-400">settings</span>
+</button>
+<button class="p-2 hover:bg-white/5 transition-all duration-300 rounded-full active:scale-95">
+<span class="material-symbols-outlined text-slate-400">notifications</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-primary/20">
+<img alt="Chief Architect Profile" data-alt="professional architect portrait in high-end studio lighting with warm tones and sharp focus" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRaARgiodKHumL3rk8PO8AL0LUU4zs5OytQf36n8BhQDeKomlc0g7QzZuxAIWud1NwicJLmu064H_WSKZAwj3NNeaIlptT-tET-LsixMSl9qGXFiqisv4eljikmM2TbNd0nKUFuxDMUJQ-qOtHzp-frq1kYZea6rj0GCOLpoawY8bcPjkVWjN9vN8v1xxJBtP_ifz39MDG_eDCwEGshCFxrnbqPOUPABA7U8ClhniLqlsg7y32HDWeSp0gqbYY8lt6XWT4rr0GRqs"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar Implementation -->
+<aside class="fixed left-0 top-16 h-[calc(100vh-64px)] w-20 hover:w-64 transition-all duration-500 overflow-hidden z-40 bg-[#0c0e17]/60 backdrop-blur-2xl border-r border-white/5 flex flex-col py-6 group">
+<div class="px-6 mb-8 flex flex-col gap-1 overflow-hidden whitespace-nowrap">
+<p class="font-['Space_Grotesk'] uppercase text-[11px] tracking-widest text-cyan-400">System Active</p>
+<p class="font-['Space_Grotesk'] uppercase text-[10px] tracking-widest text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity">Latency: 12ms</p>
+</div>
+<nav class="flex flex-col flex-1">
+<div class="group-hover:translate-x-2 transition-transform flex items-center px-6 py-4 text-cyan-400 border-l-2 border-cyan-400 bg-cyan-400/5">
+<span class="material-symbols-outlined mr-4">dashboard</span>
+<span class="font-['Space_Grotesk'] uppercase text-[11px] tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Dashboard</span>
+</div>
+<div class="group-hover:translate-x-2 transition-transform flex items-center px-6 py-4 text-slate-500 hover:text-slate-200 hover:bg-white/5">
+<span class="material-symbols-outlined mr-4">architecture</span>
+<span class="font-['Space_Grotesk'] uppercase text-[11px] tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Structural AI</span>
+</div>
+<div class="group-hover:translate-x-2 transition-transform flex items-center px-6 py-4 text-slate-500 hover:text-slate-200 hover:bg-white/5">
+<span class="material-symbols-outlined mr-4">eco</span>
+<span class="font-['Space_Grotesk'] uppercase text-[11px] tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Sustainability</span>
+</div>
+<div class="group-hover:translate-x-2 transition-transform flex items-center px-6 py-4 text-slate-500 hover:text-slate-200 hover:bg-white/5">
+<span class="material-symbols-outlined mr-4">layers</span>
+<span class="font-['Space_Grotesk'] uppercase text-[11px] tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">BIM Explorer</span>
+</div>
+<div class="group-hover:translate-x-2 transition-transform flex items-center px-6 py-4 text-slate-500 hover:text-slate-200 hover:bg-white/5">
+<span class="material-symbols-outlined mr-4">history</span>
+<span class="font-['Space_Grotesk'] uppercase text-[11px] tracking-widest whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">Archive</span>
+</div>
+</nav>
+<div class="px-4 mb-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="w-full bg-gradient-to-r from-pink-500 to-pink-700 text-black font-bold py-3 rounded-xl active:scale-95 transition-transform text-xs uppercase tracking-widest">
+        Start New Analysis
+      </button>
+</div>
+<div class="mt-auto border-t border-white/5 pt-4">
+<div class="group-hover:translate-x-2 transition-transform flex items-center px-6 py-3 text-slate-500 hover:text-slate-200">
+<span class="material-symbols-outlined mr-4">help</span>
+<span class="font-['Space_Grotesk'] uppercase text-[11px] tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Support</span>
+</div>
+<div class="group-hover:translate-x-2 transition-transform flex items-center px-6 py-3 text-slate-500 hover:text-slate-200">
+<span class="material-symbols-outlined mr-4">terminal</span>
+<span class="font-['Space_Grotesk'] uppercase text-[11px] tracking-widest opacity-0 group-hover:opacity-100 transition-opacity">Logs</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-20 mt-16 flex flex-1 overflow-hidden relative blueprint-grid">
+<!-- Sidebar: Conversational AI (Left) -->
+<section class="w-80 h-full glass-panel flex flex-col border-r border-white/5 z-10">
+<div class="p-6 border-b border-white/5">
+<h2 class="text-xs font-['Space_Grotesk'] uppercase tracking-widest text-secondary mb-1">AI Architect Assistant</h2>
+<p class="text-[10px] text-on-surface-variant font-['Space_Grotesk']">SESSION ID: 8902-ARCH</p>
+</div>
+<div class="flex-1 overflow-y-auto p-4 space-y-6 no-scrollbar">
+<!-- Chat Bubble: User -->
+<div class="flex flex-col items-end space-y-1">
+<div class="bg-surface-container-high px-4 py-2.5 rounded-xl rounded-tr-none max-w-[85%] border border-white/5">
+<p class="text-sm text-on-surface">add a floor</p>
+</div>
+<span class="text-[9px] font-['Space_Grotesk'] text-on-surface-variant uppercase">User • 14:02</span>
+</div>
+<!-- Chat Bubble: AI -->
+<div class="flex flex-col items-start space-y-1">
+<div class="bg-secondary/10 px-4 py-2.5 rounded-xl rounded-tl-none max-w-[85%] border border-secondary/20">
+<p class="text-sm text-secondary-dim">Floor added. Structural integrity verified at 98.4%. Budget impacts updated.</p>
+</div>
+<span class="text-[9px] font-['Space_Grotesk'] text-secondary uppercase">AI Core • 14:02</span>
+</div>
+<div class="flex flex-col items-end space-y-1">
+<div class="bg-surface-container-high px-4 py-2.5 rounded-xl rounded-tr-none max-w-[85%] border border-white/5">
+<p class="text-sm text-on-surface">simulate seismic load for zone 4</p>
+</div>
+<span class="text-[9px] font-['Space_Grotesk'] text-on-surface-variant uppercase">User • 14:05</span>
+</div>
+</div>
+<div class="p-4 bg-surface-container-lowest/50 backdrop-blur-md">
+<div class="relative group">
+<input class="w-full bg-surface-container-lowest border border-white/10 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-secondary transition-all" placeholder="Instruct the architect..." type="text"/>
+<button class="absolute right-2 top-1.5 p-1.5 text-secondary hover:bg-secondary/10 rounded-lg transition-colors">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Main Viewport: 2.5D Building (Center) -->
+<section class="flex-1 relative flex items-center justify-center p-12">
+<!-- Telemetry Strip -->
+<div class="absolute top-0 left-0 right-0 h-10 bg-surface-container-lowest/40 backdrop-blur-sm border-b border-white/5 flex items-center px-6 justify-between z-20">
+<div class="flex gap-8">
+<div class="flex items-center gap-2">
+<div class="w-1.5 h-1.5 rounded-full bg-tertiary animate-pulse"></div>
+<span class="text-[10px] font-['Space_Grotesk'] uppercase tracking-tighter text-on-surface-variant">RENDER: VULKAN HYBRID</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[10px] font-['Space_Grotesk'] uppercase tracking-tighter text-on-surface-variant">COORDS: 40.7128° N, 74.0060° W</span>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="text-[10px] font-['Space_Grotesk'] text-secondary">ZOOM: 1.2X</span>
+<span class="text-[10px] font-['Space_Grotesk'] text-on-surface-variant">FPS: 144</span>
+</div>
+</div>
+<!-- Schematic Visualization (Placeholder for 2.5D Building Blocks) -->
+<div class="relative w-full h-full flex items-center justify-center scale-110">
+<div class="relative w-[300px] h-[400px] transform -rotate-12 skew-x-12 flex flex-col-reverse perspective-[1000px]">
+<!-- Ground Base -->
+<div class="absolute -bottom-10 -left-10 w-[400px] h-[400px] bg-white/[0.02] border border-white/5 rounded-full -rotate-45 z-0"></div>
+<!-- Building Blocks (Asymmetric Stack) -->
+<div class="relative h-24 w-full bg-primary/20 border border-primary/40 rounded-lg mb-2 shadow-[0_0_30px_rgba(255,137,173,0.1)] flex items-center justify-center group cursor-pointer hover:bg-primary/30 transition-all">
+<span class="text-[10px] font-['Space_Grotesk'] font-bold text-primary opacity-50 group-hover:opacity-100">FLOOR 01</span>
+</div>
+<div class="relative h-24 w-4/5 bg-tertiary-container/10 border border-tertiary-container/30 rounded-lg mb-2 shadow-[0_0_30px_rgba(80,255,176,0.05)] ml-auto flex items-center justify-center group cursor-pointer hover:bg-tertiary-container/20 transition-all">
+<span class="text-[10px] font-['Space_Grotesk'] font-bold text-tertiary-container opacity-50 group-hover:opacity-100">FLOOR 02</span>
+</div>
+<div class="relative h-24 w-3/4 bg-secondary/10 border border-secondary/30 rounded-lg mb-2 shadow-[0_0_30px_rgba(0,244,254,0.1)] flex items-center justify-center group cursor-pointer hover:bg-secondary/20 transition-all">
+<span class="text-[10px] font-['Space_Grotesk'] font-bold text-secondary opacity-50 group-hover:opacity-100">FLOOR 03</span>
+</div>
+<!-- Connection Lines (Visual Polish) -->
+<div class="absolute -left-4 top-1/2 bottom-0 w-px bg-gradient-to-t from-transparent via-cyan-400/30 to-transparent"></div>
+<div class="absolute right-1/4 top-1/4 bottom-1/4 w-px bg-gradient-to-t from-transparent via-pink-400/30 to-transparent"></div>
+</div>
+</div>
+<!-- Floating Controls -->
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2 bg-surface-container-high/80 p-1.5 rounded-full border border-white/10 backdrop-blur-xl z-20">
+<button class="p-3 bg-surface-container-lowest hover:bg-white/5 rounded-full text-slate-400 transition-colors">
+<span class="material-symbols-outlined">rotate_90_degrees_ccw</span>
+</button>
+<button class="p-3 bg-surface-container-lowest hover:bg-white/5 rounded-full text-slate-400 transition-colors">
+<span class="material-symbols-outlined">zoom_in</span>
+</button>
+<button class="p-3 bg-primary text-black rounded-full transition-transform active:scale-95 shadow-[0_0_20px_rgba(255,137,173,0.4)]">
+<span class="material-symbols-outlined">add</span>
+</button>
+<button class="p-3 bg-surface-container-lowest hover:bg-white/5 rounded-full text-slate-400 transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button class="p-3 bg-surface-container-lowest hover:bg-white/5 rounded-full text-slate-400 transition-colors">
+<span class="material-symbols-outlined">layers</span>
+</button>
+</div>
+</section>
+<!-- Right Panel: KPIs & Analytics (Right) -->
+<section class="w-96 h-full glass-panel border-l border-white/5 overflow-y-auto no-scrollbar z-10 flex flex-col">
+<div class="p-8 space-y-12">
+<!-- KPIs Section -->
+<div class="space-y-8">
+<div class="space-y-1">
+<span class="text-[10px] font-['Space_Grotesk'] uppercase tracking-widest text-on-surface-variant">Remaining Budget</span>
+<div class="text-5xl font-black font-['Inter'] tracking-tighter text-on-surface">$43.00M</div>
+<div class="flex items-center gap-2 text-tertiary-dim text-xs font-['Space_Grotesk']">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>12.4% EFFICIENCY GAIN</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-high p-4 rounded-xl border border-white/5">
+<span class="text-[10px] font-['Space_Grotesk'] uppercase tracking-widest text-on-surface-variant block mb-1">Total Floors</span>
+<span class="text-3xl font-bold font-['Inter']">3</span>
+</div>
+<div class="bg-surface-container-high p-4 rounded-xl border border-white/5">
+<span class="text-[10px] font-['Space_Grotesk'] uppercase tracking-widest text-on-surface-variant block mb-1">Total Rooms</span>
+<span class="text-3xl font-bold font-['Inter']">12</span>
+</div>
+</div>
+</div>
+<!-- Donut Charts Section -->
+<div class="space-y-8">
+<div class="space-y-4">
+<h3 class="text-xs font-['Space_Grotesk'] uppercase tracking-widest text-secondary">Area by Floor</h3>
+<div class="relative w-48 h-48 mx-auto">
+<!-- SVG Donut Approximation -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="rgba(255,255,255,0.05)" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#ff89ad" stroke-dasharray="251.2" stroke-dashoffset="180" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#00f4fe" stroke-dasharray="251.2" stroke-dashoffset="220" stroke-width="8"></circle>
+<circle cx="50" cy="50" fill="transparent" r="40" stroke="#50ffb0" stroke-dasharray="251.2" stroke-dashoffset="240" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-2xl font-bold">14.2k</span>
+<span class="text-[9px] font-['Space_Grotesk'] uppercase text-on-surface-variant">Sq Ft</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="text-xs font-['Space_Grotesk'] uppercase tracking-widest text-secondary">Cost Breakdown</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-xs font-['Space_Grotesk'] text-on-surface">STRUCTURAL</span>
+</div>
+<span class="text-xs font-bold font-['Inter']">45%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-secondary"></div>
+<span class="text-xs font-['Space_Grotesk'] text-on-surface">MECHANICAL</span>
+</div>
+<span class="text-xs font-bold font-['Inter']">32%</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-xs font-['Space_Grotesk'] text-on-surface">FINISHES</span>
+</div>
+<span class="text-xs font-bold font-['Inter']">23%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Bar Charts (Anchored to section bottom) -->
+<div class="mt-auto p-8 bg-surface-container-low/50 border-t border-white/5 space-y-8">
+<div class="space-y-4">
+<h3 class="text-[10px] font-['Space_Grotesk'] uppercase tracking-widest text-secondary">Cost by Department</h3>
+<div class="flex items-end gap-3 h-24">
+<div class="w-full bg-primary/20 rounded-t-sm h-[60%] relative group">
+<div class="absolute inset-0 bg-primary opacity-50 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-full bg-secondary/20 rounded-t-sm h-[85%] relative group">
+<div class="absolute inset-0 bg-secondary opacity-50 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-full bg-tertiary/20 rounded-t-sm h-[40%] relative group">
+<div class="absolute inset-0 bg-tertiary opacity-50 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-full bg-primary/20 rounded-t-sm h-[70%] relative group">
+<div class="absolute inset-0 bg-primary opacity-50 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="text-[10px] font-['Space_Grotesk'] uppercase tracking-widest text-secondary">Cost by Building</h3>
+<div class="flex items-end gap-3 h-24">
+<div class="w-full bg-secondary/20 rounded-t-sm h-[30%] relative group">
+<div class="absolute inset-0 bg-secondary opacity-50 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-full bg-primary/20 rounded-t-sm h-[95%] relative group">
+<div class="absolute inset-0 bg-primary opacity-50 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-full bg-secondary/20 rounded-t-sm h-[65%] relative group">
+<div class="absolute inset-0 bg-secondary opacity-50 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="w-full bg-tertiary/20 rounded-t-sm h-[50%] relative group">
+<div class="absolute inset-0 bg-tertiary opacity-50 group-hover:opacity-100 transition-opacity"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Analysis Node Background Decor -->
+<div class="fixed top-1/4 right-1/4 w-96 h-96 bg-primary/5 blur-[120px] pointer-events-none rounded-full z-0"></div>
+<div class="fixed bottom-1/4 left-1/4 w-96 h-96 bg-secondary/5 blur-[120px] pointer-events-none rounded-full z-0"></div>
+</body></html>
