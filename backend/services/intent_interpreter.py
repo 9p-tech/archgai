@@ -81,10 +81,16 @@ def _keyword_fallback(message: str) -> InterpretedAction:
 
     # add N floors
     multi_floor = re.search(r'add\s+(\d+)\s+floors?', msg)
-    if multi_floor:
+    if multi_floor and not re.search(r'with|bedroom|kitchen|washroom|bathroom|office|living|dining', msg):
         return InterpretedAction(action="add_floors", params={"count": int(multi_floor.group(1))})
 
-    # add a floor
+    # add a floor with specific rooms — preset command like "add a floor with 2 bedrooms, 1 kitchen..."
+    # Strategy: create the floor first, then we handle rooms via separate calls from the frontend.
+    # The fallback simply creates the floor; the frontend should chain individual room additions.
+    if re.search(r'add\s+(a\s+|an\s+|another\s+|1\s+)?floor\s+with', msg):
+        return InterpretedAction(action="add_floor", params={})
+
+    # add a floor (simple, no rooms)
     if re.search(r'add\s+(a\s+|an\s+|another\s+|1\s+)?floor', msg) and not re.search(r'room', msg):
         return InterpretedAction(action="add_floor", params={})
 
