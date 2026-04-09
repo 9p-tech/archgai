@@ -4,9 +4,10 @@ import { useAuth } from '../../context/AuthContext';
 
 interface ProfileDropdownProps {
   onClose: () => void;
+  onOpenProfile: () => void;
 }
 
-export function ProfileDropdown({ onClose }: ProfileDropdownProps) {
+export function ProfileDropdown({ onClose, onOpenProfile }: ProfileDropdownProps) {
   const { user, signOut } = useAuth();
   const ref = useRef<HTMLDivElement>(null);
 
@@ -87,7 +88,7 @@ export function ProfileDropdown({ onClose }: ProfileDropdownProps) {
 
       {/* Menu */}
       <div style={{ padding: '0.5rem' }}>
-        {menuItem(<User size={14} />, 'Your Profile')}
+        {menuItem(<User size={14} />, 'Your Profile', onOpenProfile)}
         {menuItem(<Mail size={14} />, 'Notifications')}
         {menuItem(<Shield size={14} />, 'Account Security')}
       </div>
