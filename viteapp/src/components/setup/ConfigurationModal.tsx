@@ -1,20 +1,12 @@
 import React, { useState } from 'react';
 import { useBuilding } from '../../context/BuildingContext';
 import { KARNATAKA_DISTRICTS, getDistrictById } from '../../data/karnataka_db';
+import { API_BASE_URL } from '../../utils/constants';
 import './ConfigurationModal.css';
 
 interface ConfigurationModalProps {
   onComplete: () => void;
 }
-
-// Group districts by region for dropdown optgroups
-const REGION_GROUPS = Array.from(
-  KARNATAKA_DISTRICTS.reduce((map, d) => {
-    if (!map.has(d.region)) map.set(d.region, []);
-    map.get(d.region)!.push(d);
-    return map;
-  }, new Map<string, typeof KARNATAKA_DISTRICTS>())
-);
 
 export function ConfigurationModal({ onComplete }: ConfigurationModalProps) {
   const { dispatch } = useBuilding();
@@ -40,7 +32,7 @@ export function ConfigurationModal({ onComplete }: ConfigurationModalProps) {
     try {
       const totalBudgetInr = budgetVal * 100000;
 
-      const res = await fetch('http://localhost:8000/api/configure', {
+      const res = await fetch(`${API_BASE_URL}/api/configure`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -84,18 +76,15 @@ export function ConfigurationModal({ onComplete }: ConfigurationModalProps) {
               className="setup-input"
               required
             >
-              {REGION_GROUPS.map(([region, districts]) => (
-                <optgroup key={region} label={region}>
-                  {districts.map(d => (
-                    <option key={d.id} value={d.id}>{d.name}</option>
-                  ))}
-                </optgroup>
+              <option value="" disabled>Select a district</option>
+              {KARNATAKA_DISTRICTS.map(d => (
+                <option key={d.id} value={d.id}>{d.name}</option>
               ))}
             </select>
             {selectedDistrict && (
               <div style={{
-                marginTop: '0.45rem', fontSize: '0.68rem', color: '#94a3b8',
-                display: 'flex', gap: '0.5rem', flexWrap: 'wrap', lineHeight: 1.6,
+                marginTop: '0.65rem', fontSize: '0.68rem', 
+                display: 'flex', gap: '0.5rem', flexWrap: 'wrap', lineWeight: 1.6,
               }}>
                 {[
                   { text: selectedDistrict.region, color: '#7c3aed' },
@@ -103,7 +92,15 @@ export function ConfigurationModal({ onComplete }: ConfigurationModalProps) {
                   { text: `Seismic Zone ${selectedDistrict.seismic.zone}`, color: '#ef4444' },
                   { text: `Wind ${selectedDistrict.wind.basicWindSpeed} km/h`, color: '#06b6d4' },
                 ].map(({ text, color }) => (
-                  <span key={text} style={{ color, background: `${color}12`, border: `1px solid ${color}25`, borderRadius: '20px', padding: '0.1rem 0.5rem', fontWeight: 600 }}>{text}</span>
+                  <span key={text} style={{ 
+                    color, 
+                    background: `${color}12`, 
+                    border: `1px solid ${color}30`, 
+                    borderRadius: '20px', 
+                    padding: '0.15rem 0.6rem', 
+                    fontWeight: 600,
+                    whiteSpace: 'nowrap'
+                  }}>{text}</span>
                 ))}
               </div>
             )}
